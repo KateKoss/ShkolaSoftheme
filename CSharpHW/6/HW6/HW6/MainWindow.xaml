@@ -1,0 +1,16 @@
+﻿<Window x:Class="HW6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HW6"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="252.674" Width="511.898">
+    <Grid>
+        <TextBox x:Name="numberFromTextBox" HorizontalAlignment="Left" Height="23" Margin="181,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label" Content="Your number" HorizontalAlignment="Left" Margin="74,62,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="confirmButton" Content="Confirm" HorizontalAlignment="Left" Margin="346,147,0,0" VerticalAlignment="Top" Width="75" Click="confirmButton_Click"/>
+        <Label x:Name="infoLabel" Content="Guess the number" HorizontalAlignment="Left" Margin="181,18,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
