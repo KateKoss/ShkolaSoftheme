@@ -13,18 +13,25 @@ namespace HW5
             while (true)
             {
                 printMenu();
-                int figureNumber, dimention;
+                int figureNumber, dimension;
                 Console.Write("Input figure number: ");
                 if (int.TryParse(Console.ReadLine(), out figureNumber))
                 {
-                    Console.Write("Input figure dimention: ");
-                    if (int.TryParse(Console.ReadLine(), out dimention))
+                    Console.Write("Input figure dimension: ");
+                    if (int.TryParse(Console.ReadLine(), out dimension))
                     {
-                        figureChoise(figureNumber, dimention);
+                        if (dimension > 1)
+                        {
+                            figureChoise(figureNumber, dimension);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Dimension must be greater then 1.");
+                        }                        
                     }
                     else
                     {
-                        Console.WriteLine("error");
+                        Console.WriteLine("Error. Invalid dimension.");
                     }
                 }
                 else
@@ -41,25 +48,18 @@ namespace HW5
             Console.WriteLine("3. Romb");
         }
 
-        static void figureChoise(int figureNumber, int dimention)
+        static void figureChoise(int figureNumber, int dimension)
         {
             switch (figureNumber)
             {
                 case 1:
-                    new Figure(dimention).fillTriangle().printFigure();
+                    new Figure(dimension).fillTriangle().printFigure();
                     break;
                 case 2:
-                    new Figure(dimention).fillSquare().printFigure();
+                    new Figure(dimension).fillSquare().printFigure();
                     break;
                 case 3:
-                    if (dimention % 2 == 0)
-                    {
-                        Console.WriteLine("Dimention must be odd.");
-                    }
-                    else
-                    {
-                        new Figure(dimention).fillRhombus().printFigure();
-                    }                    
+                    new Figure(dimension).fillRhombus().printFigure();                 
                     break;
             }
         }

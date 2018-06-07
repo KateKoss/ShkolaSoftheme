@@ -18,34 +18,32 @@ namespace HW5
         }
         public Figure fillRhombus()
         {
+            dimention = (dimention * 2) - 1;
             figureArray = new string[dimention,dimention];
-            if (dimention % 2 == 1)
+            for (int i = 0; i < dimention; i++)
             {
-                for (int i = 0; i < dimention; i++)
+                for (int j = 0; j < dimention; j++)
                 {
-                    for (int j = 0; j < dimention; j++)
+                    if (i <= (dimention - 1) / 2)
                     {
-                        if (i <= (dimention - 1) / 2)
+                        if (j < (dimention - 1) / 2 - i || j > (dimention - 1) / 2 + i)
                         {
-                            if (j < (dimention - 1) / 2 - i || j > (dimention - 1) / 2 + i)
-                            {
-                                figureArray[i, j] = symbolOfEmptiness;
-                            }
-                            else
-                            {
-                                figureArray[i, j] = symbolOfFullness;
-                            }
+                            figureArray[i, j] = symbolOfEmptiness;
                         }
                         else
                         {
-                            if (j < (dimention - 1) / 2 + 1 - (dimention - i) || j > (dimention - 1) / 2 - 1 + (dimention - i))
-                            {
-                                figureArray[i, j] = symbolOfEmptiness;
-                            }
-                            else
-                            {
-                                figureArray[i, j] = symbolOfFullness;
-                            }
+                            figureArray[i, j] = symbolOfFullness;
+                        }
+                    }
+                    else
+                    {
+                        if (j < (dimention - 1) / 2 + 1 - (dimention - i) || j > (dimention - 1) / 2 - 1 + (dimention - i))
+                        {
+                            figureArray[i, j] = symbolOfEmptiness;
+                        }
+                        else
+                        {
+                            figureArray[i, j] = symbolOfFullness;
                         }
                     }
                 }
@@ -73,7 +71,7 @@ namespace HW5
             {
                 for (int j = 0; j < dimention; j++)
                 {
-                    if (i > j)
+                    if (i >= j)
                     {
                         figureArray[i, j] = symbolOfFullness;
                     }
