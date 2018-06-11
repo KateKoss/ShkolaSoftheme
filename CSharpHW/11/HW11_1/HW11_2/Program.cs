@@ -6,7 +6,15 @@ namespace HW11_2
     {
         static void Main(string[] args)
         {
-            //How to use classes from HW11_1 namespace ?
+            Printer myPrinter = new Printer();
+            myPrinter.PrinterExtention();
+            ColorPrinter colorPrinter = new ColorPrinter();
+            colorPrinter.ColorPrinterExtention(ConsoleColor.Cyan);
+            Photo myPhoto = new Photo("^-^");
+            PhotoPrinter photoPrinter = new PhotoPrinter();
+            photoPrinter.PhotoPrinterExtention(myPhoto);
+            Console.ReadKey();
         }
     }
+    
 }

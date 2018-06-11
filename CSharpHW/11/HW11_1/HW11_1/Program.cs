@@ -10,7 +10,7 @@ namespace HW11_1
             Console.ForegroundColor = ConsoleColor.Black;
             Printer printer = new Printer();
             printer.Print("From Printer class");
-            ColourPrinter colorPrinter = new ColourPrinter();
+            ColorPrinter colorPrinter = new ColorPrinter();
             
             colorPrinter.Print("From class(color): ", ConsoleColor.Yellow);
             colorPrinter.Print("From class: ");

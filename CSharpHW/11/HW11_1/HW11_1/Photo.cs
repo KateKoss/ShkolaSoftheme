@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HW11_1
 {
-    class Photo
+    public class Photo
     {
         string photo { get; }
         public Photo(string photo)

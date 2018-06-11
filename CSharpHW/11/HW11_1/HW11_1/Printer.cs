@@ -2,7 +2,7 @@
 
 namespace HW11_1
 {
-    class Printer
+    public class Printer
     {
         public virtual void Print(string message)
         {

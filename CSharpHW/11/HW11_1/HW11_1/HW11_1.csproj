@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColourPrinter.cs" />
+    <Compile Include="ColorPrinter.cs" />
     <Compile Include="Photo.cs" />
     <Compile Include="PhotoPrinter.cs" />
     <Compile Include="Printer.cs" />
