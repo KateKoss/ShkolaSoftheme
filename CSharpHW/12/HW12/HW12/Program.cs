@@ -1,7 +1,10 @@
 ﻿using System;
-using HW12;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HW13
+namespace HW12
 {
     class Program
     {
