@@ -1,4 +1,4 @@
-﻿namespace HW12
+﻿namespace HW13
 {
     interface IUser
     {

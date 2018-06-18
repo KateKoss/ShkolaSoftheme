@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HW12
+namespace HW13
 {
     public class User : IUser
     {

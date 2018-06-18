@@ -1,9 +1,9 @@
 ﻿using System;
 
 
-namespace HW12
+namespace HW13
 {
-    class ContainerOfUsers 
+    class ContainerOfUsers : IUserDataBase
     {
         public static User[] users = new User[]
             {
@@ -12,6 +12,22 @@ namespace HW12
                 new User("alex", "qwerty123", "admin@gmail.com", new DateTime(2018,03,6)),
                 new User("kitty", "qwerty123", "admin@gmail.com", new DateTime(2018,03,6))
             };
+
+        public void Dispose()
+        {
+            Console.WriteLine(new string('-', 20));
+            Console.WriteLine("Registered users:");
+            foreach (var user in users)
+            {                
+                Console.WriteLine(user.GetFullInfo());                
+            }
+            Console.WriteLine(new string('-', 20));
+        }
+
+        public static User[] GetRegisteredUsers()
+        {
+            return users;
+        }
 
         public User GetUserWithFullInfo(User user)
         {
@@ -25,7 +41,7 @@ namespace HW12
             return null;
         }
 
-        public void setLastLoginTime(User user)
+        public void SetLastLoginTime(User user)
         {
             for (int i = 0; i < users.Length; i++)
             {

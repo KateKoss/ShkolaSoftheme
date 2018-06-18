@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HW12
+namespace HW13
 {
     class EmailAuthentication : IAuthenticator
     {
@@ -9,7 +9,7 @@ namespace HW12
             User authenticatedUser = user as User;
             if (authenticatedUser != null)
             {
-                foreach (var registeredUser in GetRegisteredUsers())
+                foreach (var registeredUser in ContainerOfUsers.GetRegisteredUsers())
                 {
                     if (authenticatedUser.EqualsByEmail(registeredUser))
                     {
@@ -32,10 +32,13 @@ namespace HW12
             User user = new User(string.Empty, password, userEmail);
             if (AuthenticateUser(user))
             {
-                Console.WriteLine("Welcome!");
-                user = ContainerOfUsers.GetUserWithFullInfo(user);
-                Console.WriteLine(user.GetFullInfo());
-                ContainerOfUsers.setLastLoginTime(user);
+                using (var db = new ContainerOfUsers())
+                {
+                    Console.WriteLine("Welcome!");
+                    user = db.GetUserWithFullInfo(user);
+                    Console.WriteLine(user.GetFullInfo());
+                    db.SetLastLoginTime(user);
+                }
             }
             else
             {
