@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace HW21
 {
@@ -13,52 +10,52 @@ namespace HW21
         {
             MobileOperator lifecellOperator = new MobileOperator("Lifecell");
             lifecellOperator.CreateAccounts();
-            lifecellOperator.users[0].SendSMS(lifecellOperator.users[1], "Hi! How are you?");
-            lifecellOperator.users[0].SendSMS(lifecellOperator.users[3], "Hi! How are you?");
-            lifecellOperator.users[0].SendSMS(lifecellOperator.users[4], "Hi! How are you?");
-            lifecellOperator.users[0].SendSMS(lifecellOperator.users[4], "Hi! How are you?");
-            lifecellOperator.users[2].SendSMS(lifecellOperator.users[5], "Hi! How are you?");
-            lifecellOperator.users[2].SendSMS(lifecellOperator.users[4], "Hi! How are you?");
-            Console.WriteLine(new string('-', 20));
+            string binaryFile = "usersBin.dat";
+            string xmlFile = "usersXml.xml";
+            string jsonFile = "usersJson.txt";
+            string protoBufFile = "usersProtoBuf.bin";
 
-            lifecellOperator.users[0].Call(lifecellOperator.users[2]);
-            lifecellOperator.users[0].Call(lifecellOperator.users[4]);
-            lifecellOperator.users[0].Call(lifecellOperator.users[4]);
-            lifecellOperator.users[1].Call(lifecellOperator.users[4]);
-            lifecellOperator.users[1].Call(lifecellOperator.users[5]);
-            lifecellOperator.users[1].Call(lifecellOperator.users[1]);
-            lifecellOperator.users[1].Call(lifecellOperator.users[3]);
-                        
-            lifecellOperator.StatisticByReceive();
-            Console.WriteLine(new string('-', 20));
-            lifecellOperator.StatisticByOutput();
-            lifecellOperator.AddAccount("sd", "fds", "dsf", new DateTime(2040, 5, 6));
-            Console.WriteLine("\nDeserializeFromBinary");
+            Console.WriteLine("\n-------------Serialized to Binary-------------");
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            SerializationUtil.SerializeToBinary("usersBin.dat", lifecellOperator.GetUsers());
+            SerializationUtil.SerializeToBinary(binaryFile, lifecellOperator.GetUsers());
             stopwatch.Stop();
-            Console.WriteLine("Serialized in {0} ms", stopwatch.ElapsedMilliseconds);
-            SerializationUtil.DeserializeFromBinary("usersBin.dat").ForEach(x =>
+            Console.WriteLine("Serialized in {0} ms, file size {1}", stopwatch.ElapsedMilliseconds, new FileInfo(binaryFile).Length);
+            Console.WriteLine("Deserialized From Binary");
+            SerializationUtil.DeserializeFromBinary(binaryFile).ForEach(x =>
             {
                 Console.WriteLine(x.FirstName);
             });
 
-            Console.WriteLine("\nDeserializeFromXML");
+            Console.WriteLine("\n-------------Serialize to XML-------------");
             stopwatch.Restart();
-            SerializationUtil.SerializeToXML("usersXml.xml", lifecellOperator.GetUsers());
+            SerializationUtil.SerializeToXML(xmlFile, lifecellOperator.GetUsers());
             stopwatch.Stop();
-            Console.WriteLine("Serialized in {0} ms", stopwatch.ElapsedMilliseconds);
-            SerializationUtil.DeserializeFromXML("usersXml.xml").ForEach(x =>
+            Console.WriteLine("Serialized in {0} ms, file size {1}", stopwatch.ElapsedMilliseconds, new FileInfo(xmlFile).Length);
+            Console.WriteLine("Deserialized From XML");
+            SerializationUtil.DeserializeFromXML(xmlFile).ForEach(x =>
             {
                 Console.WriteLine(x.FirstName);
             });
-            Console.WriteLine("\nDeserializeFromJSON");
+
+            Console.WriteLine("\n-------------Serialize to JSON-------------");
             stopwatch.Restart();
-            SerializationUtil.SerializeToJSON("usersJson.txt", lifecellOperator.GetUsers());
+            SerializationUtil.SerializeToJSON(jsonFile, lifecellOperator.GetUsers());
             stopwatch.Stop();
-            Console.WriteLine("Serialized in {0} ms", stopwatch.ElapsedMilliseconds);
-            SerializationUtil.DeserializeFromJSON("usersJson.txt").ForEach(x => 
+            Console.WriteLine("Serialized in {0} ms, file size {1}", stopwatch.ElapsedMilliseconds, new FileInfo(jsonFile).Length);
+            Console.WriteLine("Deserialized From JSON");
+            SerializationUtil.DeserializeFromJSON(jsonFile).ForEach(x => 
+            {
+                Console.WriteLine(x.FirstName);
+            });
+
+            Console.WriteLine("\n-------------Serialize to ProtoBuf-------------");
+            stopwatch.Restart();
+            SerializationUtil.SerializeToProtoBuf(protoBufFile, lifecellOperator.GetUsers());
+            stopwatch.Stop();
+            Console.WriteLine("Serialized in {0} ms, file size {1}", stopwatch.ElapsedMilliseconds, new FileInfo(protoBufFile).Length);
+            Console.WriteLine("Deserialized From ProtoBuf");
+            SerializationUtil.DeserializeFromProtoBuf(protoBufFile).ForEach(x =>
             {
                 Console.WriteLine(x.FirstName);
             });

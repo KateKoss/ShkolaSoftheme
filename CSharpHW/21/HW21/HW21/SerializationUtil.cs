@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
-//using ProtoBuf;
+using ProtoBuf;
 
 namespace HW21
 {
@@ -64,6 +64,22 @@ namespace HW21
             using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
                 return (List<MobileAccount>)jsonFormater.ReadObject(fs);
+            }
+        }
+
+        public static void SerializeToProtoBuf(string fileName, List<MobileAccount> mobileAcconts)
+        {
+            using (var file = File.Create(fileName))
+            {
+                Serializer.Serialize(file, mobileAcconts);
+            }
+        }
+
+        public static List<MobileAccount> DeserializeFromProtoBuf(string fileName)
+        {
+            using (var file = File.OpenRead(fileName))
+            {
+                return Serializer.Deserialize<List<MobileAccount>>(file);
             }
         }
     }

@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace HW21
 {
-    //[Serializable]
     class MobileOperator
     {
         public List<MobileAccount> users;
