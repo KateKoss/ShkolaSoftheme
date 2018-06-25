@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 
 namespace HW25
@@ -7,8 +8,14 @@ namespace HW25
     {
         static void Main(string[] args)
         {
-            string dirPath = "..\\..\\Data\\";
-            DirectoryArchivateUtil.ArchivateAllInDir(dirPath);
+            Console.Write("Enter directory path (Example path ..\\..\\Data\\ ): ");
+            string userDirPath = Console.ReadLine();
+            while (!Directory.Exists(userDirPath))
+            {
+                Console.Write("Enter directory path (Example path ..\\..\\Data\\ ): ");
+                userDirPath = Console.ReadLine();
+            }
+            DirectoryArchivateUtil.ArchivateAllInDir(userDirPath);
             Console.ReadKey();
         }
     }

@@ -1,0 +1,21 @@
+﻿@model HW28.Models.OrderModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Product from list. Price < 15000 </h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>ProductName</h2>
+        <p>
+            @Model.ProductName
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>TotalPrice</h2>
+        <p>@Model.TotalPrice</p>
+    </div>
+</div>
