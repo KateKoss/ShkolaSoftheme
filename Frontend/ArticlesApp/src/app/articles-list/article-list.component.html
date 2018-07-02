@@ -1,6 +1,6 @@
 <div class="container">
     <div *ngIf="articles; else Loading">
-        <div *ngFor="let articleItem of articles">
+        <div *ngFor="let articleItem of articles" class="appcard">
                 <article-details [article]="articleItem"></article-details>
         </div>        
     </div>
