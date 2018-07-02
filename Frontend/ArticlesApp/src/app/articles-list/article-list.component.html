@@ -1,0 +1,8 @@
+<div class="container">
+    <div *ngIf="articles; else Loading">
+        <div *ngFor="let articleItem of articles">
+                <article-details [article]="articleItem"></article-details>
+        </div>        
+    </div>
+    <ng-template #loading>Loading...</ng-template>
+</div>
