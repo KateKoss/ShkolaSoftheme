@@ -1,6 +1,5 @@
-// import { Injectable } from "@angular/core";
-
 import { Article } from "./article-details/article.model";
+import { Observable } from "rxjs";
 
 export class ArticleListService{
     articles: Article[] = [{
@@ -15,6 +14,7 @@ export class ArticleListService{
         shortDescription: "My second article",
         rubric: "Science"
     }];
+
     getArticles() : Article[] {
         return this.articles;
     }
