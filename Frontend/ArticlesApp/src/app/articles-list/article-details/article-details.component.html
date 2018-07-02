@@ -14,14 +14,21 @@
     </p>
 </div> -->
 
-<div class="card" id="{{ article.id }}">
+<div class="card appcard" id="{{ article.id }}">
     <div class="card-body">
-        <h5 class="card-header">{{ article.title }}</h5>
-        <h5 class="card-title">{{ article.shortDescription }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Article from the rubric: {{ article.rubric}}</h6>
-        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <h5 class="card-title" [ngClass]="{ titleColor: isColorGrey }" (click)="changeColor()">{{ article.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ article.shortDescription }}</h6>
+        <p class="card-text">Article from the rubric: {{ article.rubric }}</p>
+        <div class="row">
+            <div class="col-sm-3">
+                <p>
+                    Enter the rubric 
+                </p>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="article.rubric" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        
     </div>
 </div>
