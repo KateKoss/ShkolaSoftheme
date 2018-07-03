@@ -13,10 +13,17 @@ import { Subscription } from "rxjs";
 export class ArticlesListComponent implements OnInit{
     articles: Article[];
     private subscription: Subscription;
-    constructor(private route: ActivatedRoute, private service: ArticleListService){
+    constructor(private service: ArticleListService){
     }
 
     ngOnInit(){
-        this.articles = this.service.getArticles();
+        this.service.getArticles().subscribe(
+            response => this.articles = response,
+            error => console.log(error)
+        )
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 }

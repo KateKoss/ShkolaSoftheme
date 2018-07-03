@@ -1,21 +1,20 @@
-import { Article } from "./article-details/article.model";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { HttpClient } from '@angular/common/http';
 
+import { Article } from "./article-details/article.model";
+
+const requestUrl = 'http://localhost:3000';
+
+@Injectable()
 export class ArticleListService{
-    articles: Article[] = [{
-        id: "1",
-        title: "The Day in Question",
-        shortDescription: "My first article",
-        rubric: "News"
-    },
-    {
-        id: "2",
-        title: "My article",
-        shortDescription: "My second article",
-        rubric: "Science"
-    }];
+    constructor(private http: HttpClient){}
 
-    getArticles() : Article[] {
-        return this.articles;
+    getArticles() : Observable<Article[]> {
+        return this.http.get<Article[]>(`${requestUrl}/articles`);
+    }
+
+    getArticle(id : string){
+        return this.http.get<Article>(`${requestUrl}/articles/${id}`);
     }
 }
