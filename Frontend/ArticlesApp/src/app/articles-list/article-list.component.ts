@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { Article } from "./article-details/article.model"
 import { ArticleListService } from "./article-list.service";
@@ -12,9 +11,8 @@ import { Subscription } from "rxjs";
 })
 export class ArticlesListComponent implements OnInit{
     articles: Article[];
-    private subscription: Subscription;
-    constructor(private service: ArticleListService){
-    }
+
+    constructor(private service: ArticleListService){ }
 
     ngOnInit(){
         this.service.getArticles().subscribe(
@@ -23,7 +21,7 @@ export class ArticlesListComponent implements OnInit{
         )
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
+    // ngOnDestroy() {
+    //     this.subscription.unsubscribe();
+    // }
 }
